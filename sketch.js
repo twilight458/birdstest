@@ -14,8 +14,11 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  noSmooth();
-  pixelDensity(1);
+  createCanvas(windowWidth, windowHeight);
+
+// Force crisp scaling everywhere (GitHub Pages, retina screens, etc.)
+pixelDensity(1);
+noSmooth();
 
   for (let i = 0; i < numBoids; i++) {
     boids.push(new Boid(random(width), random(height)));
@@ -176,7 +179,8 @@ class Boid {
     imageMode(CENTER);
     noSmooth();
 
-    image(birdImg, 0, 0, 48, 48); // <<< BIGGER BIRDS
+   let birdSize = 64; // make them bigger and consistent everywhere
+image(birdImg, 0, 0, birdSize, birdSize);
 
     pop();
   }
